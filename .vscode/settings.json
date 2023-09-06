@@ -1,0 +1,17 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.tabSize": 2,
+    "editor.formatOnSaveMode": "modifications",
+    "files.autoSave": "afterDelay",
+    "typescript.validate.enable": true,
+    "javascript.validate.enable": true,
+    "nest.useSwaggerUI": true,
+    "eslint.enable": true,
+    "eslint.options": {
+        "configFile": ".eslintrc.js"
+    }
+}
