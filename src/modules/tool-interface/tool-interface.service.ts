@@ -46,12 +46,12 @@ export class ToolInterfaceService {
   async _getIncluded(siteUrl) {
     try {
       const baiduCount = await this.getBaiduIndexCount(siteUrl);
-      const googleCount = await this.getGoogleIndexCount(siteUrl);
+      // const googleCount = await this.getGoogleIndexCount(siteUrl);
       const bingCount = await this.getBingIndexCount(siteUrl);
 
       return {
         baidu: baiduCount,
-        google: googleCount,
+        // google: googleCount,
         bing: bingCount,
       };
     } catch (error) {
@@ -101,18 +101,19 @@ export class ToolInterfaceService {
 
   // 获取必应收录量
   async getBingIndexCount(siteUrl) {
-    const url = `https://www.bing.com/search?q=site:${backDelHttpsUrl(
-      siteUrl,
-    )}`;
+    const url = `https://cn.bing.com/search?q=site:${backDelHttpsUrl(siteUrl)}`;
 
     const resultStats = await this.spiderService.getContentBySelector(
       url,
       '#b_tween',
     );
 
+    return resultStats
+
     // 从字符串中提取收录数量
     const count =
-      resultStats.match(/约 ([\d,]+) 个结果时间不限/) ||
+      resultStats.match(/([\d,]+) 条结果/) ||
+      resultStats.match(/约 ([\d,]+) 个结果/) ||
       resultStats.match(/About ([\d,]+) resultsAny/);
     if (count && count.length > 1) {
       return count[1].replace(/,/g, '');

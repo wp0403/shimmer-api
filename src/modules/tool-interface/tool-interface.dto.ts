@@ -18,7 +18,7 @@ export class NetworkInfo {
 
 export class Included {
   baidu: number | string;
-  google: number | string;
+  // google: number | string;
   bing: number | string;
 }
 
