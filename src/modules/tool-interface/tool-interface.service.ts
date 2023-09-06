@@ -65,7 +65,7 @@ export class ToolInterfaceService {
 
     const resultStats = await this.spiderService.getContentBySelector(
       url,
-      '.c-border.c-row.site_tip',
+      '#content_left .c-border.c-row.site_tip',
     );
 
     // 从字符串中提取收录数量
