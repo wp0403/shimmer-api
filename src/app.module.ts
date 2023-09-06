@@ -1,6 +1,8 @@
 import { CacheModule, Module } from '@nestjs/common';
 import { APP_INTERCEPTOR, APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 // import { MongooseModule } from '@nestjs/mongoose';
 import {
   CustomLoggingInterceptor,
@@ -25,6 +27,10 @@ import { SpiderService } from './modules/spider/spider.service';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public', 'swagger-ui-dist'),
+      serveRoot: 'swagger',
+    }),
     ConfigModule.forRoot(),
     // MongooseModule.forRoot('mongodb://localhost:27017/nestjs_app'), // 替换为你的 MongoDB 连接字符串
     // MongooseModule.forFeature([{ name: RequestStatistic.name, schema: RequestStatisticSchema }]),
