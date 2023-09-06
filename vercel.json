@@ -4,12 +4,16 @@
     {
       "src": "dist/main.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "public/**/*",
+      "use": "@now/static-build"
     }
   ],
   "routes": [
     {
-      "src": "/swaggger/(.*)",
-      "dest": "public/swagger-ui-dist/($1)"
+      "src": "/(.*)",
+      "dest": "/public/$1"
     },
     {
       "src": "/(.*)",
