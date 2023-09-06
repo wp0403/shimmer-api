@@ -57,7 +57,7 @@ export default class CacheInterceptor implements NestInterceptor {
         // 获取响应数据后更新缓存
         const expiresAt = new Date(Date.now() + cacheConfig.duration * 1000);
         // 判断需要缓存再设置
-        if (cacheConfig.flag) {
+        if (cacheConfig.flag && data.code === 200) {
           this.cache.set(url, { data, expiresAt });
         }
       }),
