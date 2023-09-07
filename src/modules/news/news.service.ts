@@ -489,6 +489,9 @@ export class NewsService {
     };
 
     const response = await axios.get(url, { headers });
+
+    console.log(response.data);
+
     const data = getData(response.data);
     return data;
   }
