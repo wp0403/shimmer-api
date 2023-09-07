@@ -108,8 +108,6 @@ export class ToolInterfaceService {
       '#b_tween',
     );
 
-    return resultStats
-
     // 从字符串中提取收录数量
     const count =
       resultStats.match(/([\d,]+) 条结果/) ||
