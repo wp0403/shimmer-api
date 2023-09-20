@@ -4,7 +4,7 @@ import { SpiderService } from '../spider/spider.service';
 import { backDelHttpsUrl, backAddHttpsUrl } from '../../common/utils/utils';
 @Injectable()
 export class ToolInterfaceService {
-  constructor(private spiderService: SpiderService) { }
+  constructor(private spiderService: SpiderService) {}
 
   // 获取当前ip的网络信息
   async _getNetworkInfo(ipAddress) {
@@ -46,12 +46,12 @@ export class ToolInterfaceService {
   async _getIncluded(siteUrl) {
     try {
       const baiduCount = await this.getBaiduIndexCount(siteUrl);
-      // const googleCount = await this.getGoogleIndexCount(siteUrl);
+      const googleCount = await this.getGoogleIndexCount(siteUrl);
       const bingCount = await this.getBingIndexCount(siteUrl);
 
       return {
         baidu: baiduCount,
-        // google: googleCount,
+        google: googleCount,
         bing: bingCount,
       };
     } catch (error) {
@@ -128,15 +128,17 @@ export class ToolInterfaceService {
     return resultStats;
   }
 
+  // 获取网站icon
   async _getWebSiteIcon(siteUrl, is_redirect = false) {
     const resultStats = await this.spiderService.getPageIcon(
       backAddHttpsUrl(siteUrl),
     );
+
     return JSON.parse(`${is_redirect}`)
       ? {
-        type: 'redirect',
-        data: resultStats,
-      }
+          type: 'redirect',
+          data: resultStats,
+        }
       : resultStats;
   }
 }

@@ -4,7 +4,7 @@
  * @Author: WangPeng
  * @Date: 2023-07-20 15:09:12
  * @LastEditors: WangPeng
- * @LastEditTime: 2023-08-31 16:06:29
+ * @LastEditTime: 2023-09-20 14:39:12
  */
 import {
   Injectable,
@@ -28,6 +28,7 @@ interface Obj {
     [key: string]: number | string;
   };
   data: DataObj;
+  contentType?: string;
 }
 
 type Data = DataObj & Obj;
@@ -57,7 +58,7 @@ export default class TransformInterceptor implements NestInterceptor {
         } else if (data.type && data.type === 'redirect') {
           response.statusCode = 302;
           response.header('Location', data.data);
-          return;
+          return data.data;
         } else if (data.type && data.type === 'script') {
           response.set('Content-Type', 'application/javascript');
           return data.data;

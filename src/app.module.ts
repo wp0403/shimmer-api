@@ -1,14 +1,12 @@
 import { CacheModule, Module } from '@nestjs/common';
 import { APP_INTERCEPTOR, APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
-// import { MongooseModule } from '@nestjs/mongoose';
 import {
   CustomLoggingInterceptor,
   CacheInterceptor,
   AllExceptionsFilter,
   RolesInterceptor,
   TransformInterceptor,
-  RequestStatisticsInterceptor,
 } from '@shared';
 import { cacheConfigDecorator } from '@decorator';
 import { AppController } from './app.controller';
@@ -16,11 +14,7 @@ import { NewsModule } from './modules/news/news.module';
 import { MusicModule } from './modules/music/music.module';
 import { PictureModule } from './modules/picture/picture.module';
 import { PageDecorationModule } from './modules/page-decoration/page-decoration.module';
-import { ToolInterfaceModule } from './modules/tool-interface/tool-interface.module'
-import {
-  RequestStatistic,
-  RequestStatisticSchema,
-} from './common/shared/request-statistic.schema';
+import { ToolInterfaceModule } from './modules/tool-interface/tool-interface.module';
 import { SpiderService } from './modules/spider/spider.service';
 
 @Module({
@@ -45,10 +39,6 @@ import { SpiderService } from './modules/spider/spider.service';
       provide: APP_INTERCEPTOR,
       useClass: CustomLoggingInterceptor, // 全局请求日志记录拦截器
     },
-    // {
-    //   provide: APP_INTERCEPTOR,
-    //   useClass: RequestStatisticsInterceptor, // 记录接口请求次数
-    // },
     {
       provide: APP_INTERCEPTOR,
       useClass: CacheInterceptor, // 缓存拦截器,可以实现响应缓存

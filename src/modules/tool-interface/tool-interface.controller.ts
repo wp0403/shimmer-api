@@ -4,7 +4,7 @@
  * @Author: WangPeng
  * @Date: 2023-07-23 23:25:55
  * @LastEditors: WangPeng
- * @LastEditTime: 2023-08-31 17:23:55
+ * @LastEditTime: 2023-09-20 16:04:06
  */
 import { Get, Controller, Req, Ip, Query } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
@@ -14,7 +14,7 @@ import { convertIPv6ToIPv4 } from '../../common/utils/utils';
 @Controller('tool')
 @ApiTags('tool，工具')
 export class ToolInterfaceController {
-  constructor(private readonly toolInterfaceService: ToolInterfaceService) { }
+  constructor(private readonly toolInterfaceService: ToolInterfaceService) {}
 
   @Get('/parsing-ip')
   @ApiOperation({
@@ -36,13 +36,17 @@ export class ToolInterfaceController {
     return await this.toolInterfaceService._getNetworkInfo(ipAddress);
   }
 
+  // 由于会触发搜索引擎的反爬虫机制，暂不提供该接口服务
   @Get('/included')
   @ApiOperation({
     summary: '查询当前链接收录',
-    description: '查询百度、谷歌、必应对网站的收录量',
+    description: `<div style="background-color: yellow; padding: 10px;">
+      <strong>注意：</strong>由于会触发搜索引擎的反爬虫机制，暂不提供该接口服务。
+    </div>查询百度、谷歌、必应对网站的收录量`,
   })
   async getIncluded(@Query('url') url: string): Promise<Included | string> {
-    return await this.toolInterfaceService._getIncluded(url);
+    return '由于会触发搜索引擎的反爬虫机制，暂不提供该接口服务';
+    // return await this.toolInterfaceService._getIncluded(url);
   }
 
   @Get('/website-info')
