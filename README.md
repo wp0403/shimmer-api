@@ -29,7 +29,7 @@ pnpm start
 ## 使用方法
 
 启动项目后，可以查看对应的接口文档，获取接口返回类型（vercel 部署不支持接口文档，暂未找到解决办法）。
-http://localhost:3008/api
+http://localhost:3008/swagger
 
 ## 部署
 
