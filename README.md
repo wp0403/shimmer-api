@@ -47,6 +47,15 @@ http://localhost:3008/swagger
 2. 设置环境变量并配置相关信息。
 3. 部署项目到 Render。
 
+## 接口文档
+
+[新闻、热搜](/src/modules/news/README.md)
+[音乐](/src/modules/music/README.md)
+[图片](/src/modules/picture/README.md)
+[视频](/src/modules/movies/README.md)
+[页面装饰](/src/modules/page-decoration/README.md)
+[工具](/src/modules/tool-interface/README.md)
+
 ## 贡献
 
 欢迎贡献你的代码，以及提交问题和建议。请遵循贡献指南。
