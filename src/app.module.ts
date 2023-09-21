@@ -13,6 +13,7 @@ import { AppController } from './app.controller';
 import { NewsModule } from './modules/news/news.module';
 import { MusicModule } from './modules/music/music.module';
 import { PictureModule } from './modules/picture/picture.module';
+import { MoviesModule } from './modules/movies/movies.module';
 import { PageDecorationModule } from './modules/page-decoration/page-decoration.module';
 import { ToolInterfaceModule } from './modules/tool-interface/tool-interface.module';
 import { SpiderService } from './modules/spider/spider.service';
@@ -20,12 +21,11 @@ import { SpiderService } from './modules/spider/spider.service';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    // MongooseModule.forRoot('mongodb://localhost:27017/nestjs_app'), // 替换为你的 MongoDB 连接字符串
-    // MongooseModule.forFeature([{ name: RequestStatistic.name, schema: RequestStatisticSchema }]),
     CacheModule.register(),
     NewsModule,
     MusicModule,
     PictureModule,
+    MoviesModule,
     PageDecorationModule,
     ToolInterfaceModule,
   ],

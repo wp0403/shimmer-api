@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
+import cheerio from 'cheerio';
 import { SpiderService } from '../spider/spider.service';
 import { backDelHttpsUrl, backAddHttpsUrl } from '../../common/utils/utils';
 @Injectable()
@@ -141,4 +142,14 @@ export class ToolInterfaceService {
         }
       : resultStats;
   }
+
+  // 翻译
+  // async _getTranslate(text) {
+  // const url =
+  //   'https://translate.google.com/?hl=zh-CN&sl=auto&tl=en&text=你好&op=translate';
+  // const response = await axios.get(url);
+  // const $ = cheerio.load(response.data);
+  // return response.data;
+  //   return '当前接口未实现';
+  // }
 }

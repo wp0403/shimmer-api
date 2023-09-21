@@ -9,6 +9,9 @@
 | 360壁纸分类     | /picture/type-list-360   | 🟢      |
 | 360壁纸     | /picture/list-360   | 🟢      |
 | 必应每日壁纸     | /picture/daily-bing   | 🟢      |
+| 必应每日壁纸     | /picture/daily-bing   | 🟢      |
+| Pexels精选图片列表   | /picture/pexels-curated   | 🟢  |
+| Pexels搜索图片列表   | /picture/pexels-search   | 🟢  |
 
 ### 请求示例
 

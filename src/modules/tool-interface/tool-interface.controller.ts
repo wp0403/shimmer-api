@@ -4,7 +4,7 @@
  * @Author: WangPeng
  * @Date: 2023-07-23 23:25:55
  * @LastEditors: WangPeng
- * @LastEditTime: 2023-09-20 16:04:06
+ * @LastEditTime: 2023-09-21 11:37:41
  */
 import { Get, Controller, Req, Ip, Query } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
@@ -69,4 +69,15 @@ export class ToolInterfaceController {
   ): Promise<{ type: string; data: string } | string> {
     return await this.toolInterfaceService._getWebSiteIcon(url, is_redirect);
   }
+
+  // @Get('/translate')
+  // @ApiOperation({
+  //   summary: '文本翻译',
+  //   description: '文本翻译',
+  // })
+  // async getTranslate(
+  //   @Query('text') text: string,
+  // ): Promise<{ type: string; data: string } | string> {
+  //   return await this.toolInterfaceService._getTranslate(text);
+  // }
 }

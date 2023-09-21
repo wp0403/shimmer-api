@@ -119,7 +119,7 @@ export class PictureService {
         if (JSON.parse(`${is_redirect}`)) {
           return {
             type: 'redirect',
-            data: `https://cn.bing.com${obj.url}`
+            data: `https://cn.bing.com${obj.url}`,
           };
         }
         return {
@@ -143,5 +143,82 @@ export class PictureService {
     });
     const data = getData(response.data.images);
     return data;
+  }
+
+  // 获取Pexels图片
+  async _getPexelsList({
+    page = 1,
+    page_size = 10,
+  }: {
+    [key: string]: number | string;
+  }) {
+    // 调用路径
+    const url = 'https://api.pexels.com/v1/curated';
+    const HEADERS = {
+      Authorization: process.env.PEXELS_API_KEY,
+    };
+    const QUERIES = {
+      page: page,
+      per_page: page_size,
+    };
+
+    const response = await axios.get(url, {
+      headers: HEADERS,
+      params: QUERIES,
+    });
+
+    const meta = {
+      page: response.data.page,
+      page_size: response.data.per_page,
+    };
+    const data = response.data.photos;
+    return {
+      data,
+      meta,
+    };
+  }
+
+  // 搜索Pexels图片
+  async _getPexelsSearchList({
+    page = 1,
+    page_size = 10,
+    query,
+    orientation,
+    size = 'large',
+    color,
+    locale,
+  }: {
+    [key: string]: number | string;
+  }) {
+    // 调用路径
+    const url = 'https://api.pexels.com/v1/search';
+    const HEADERS = {
+      Authorization: process.env.PEXELS_API_KEY,
+    };
+    const QUERIES = {
+      page: page,
+      per_page: page_size,
+      query: query,
+      orientation: orientation,
+      size,
+      color,
+      locale,
+    };
+
+    const response = await axios.get(url, {
+      headers: HEADERS,
+      params: QUERIES,
+    });
+
+    const meta = {
+      page: response.data.page,
+      page_size: response.data.per_page,
+      total: response.data.total_results,
+    };
+    const data = response.data.photos;
+    return {
+      data,
+      meta,
+    };
   }
 }

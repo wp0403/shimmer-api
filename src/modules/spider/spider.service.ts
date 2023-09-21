@@ -24,9 +24,7 @@ export class SpiderService {
 
   // 获取页面所有的内容
   async crawlPage(url) {
-    const res = await axios.get(
-      `${process.env.SPIDER_URL}?url=${url}`,
-    );
+    const res = await axios.get(`${process.env.SPIDER_URL}?url=${url}`);
     return res.data;
   }
 
