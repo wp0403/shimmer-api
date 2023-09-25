@@ -4,7 +4,7 @@
  * @Author: WangPeng
  * @Date: 2023-07-20 15:09:12
  * @LastEditors: WangPeng
- * @LastEditTime: 2023-09-20 14:39:12
+ * @LastEditTime: 2023-09-25 17:17:06
  */
 import {
   Injectable,
@@ -48,7 +48,6 @@ export default class TransformInterceptor implements NestInterceptor {
     const ctx = context.switchToHttp();
     // const request = ctx.getRequest();
     const response = ctx.getResponse();
-    const time = Date.now();
     return next.handle().pipe(
       map((data: Data) => {
         // 在这里实现你的响应转换处理
@@ -60,7 +59,7 @@ export default class TransformInterceptor implements NestInterceptor {
           response.header('Location', data.data);
           return data.data;
         } else if (data.type && data.type === 'script') {
-          response.set('Content-Type', 'application/javascript');
+          response.header('Content-Type', 'application/javascript');
           return data.data;
         } else {
           return {
