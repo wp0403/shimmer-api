@@ -1,13 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import * as cors from 'cors';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // 允许来自所有源的请求
-  app.use(cors());
+  app.enableCors();
 
   // 创建 Swagger 文档
   const config = new DocumentBuilder()
