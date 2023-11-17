@@ -49,39 +49,49 @@ export class SpiderService {
   // 从HTML中正则提取<title>标签内容
   async getPageTitle(url) {
     const html = await this.crawlPage(url);
-    const titleReg = /<title>([\s\S]*?)<\/title>/i;
-    const matches = html.match(titleReg);
-    return matches[1].trim();
+    // 使用 cheerio.load() 方法加载 HTML 字符串
+    const $ = cheerio.load(html);
+    // 使用类似 jQuery 的选择器语法找到 link 元素
+    const titleElement = $('title').first();
+    return titleElement.text();
   }
 
   // 从HTML中获取meta name="description" content
   async getMetaDescription(url) {
     const html = await this.crawlPage(url);
-    const metaReg = /<meta.*?name="description" content="(.*?)"/i;
-    const matches = html.match(metaReg);
-    return matches[1].trim();
+    // 使用 cheerio.load() 方法加载 HTML 字符串
+    const $ = cheerio.load(html);
+    // 使用类似 jQuery 的选择器语法找到 link 元素
+    const descElement = $('meta[name="description"]').first();
+    const description = descElement.attr('content');
+    return description;
   }
 
   // 提取网页中icon link标签的href作为图标
   async getPageIcon(url) {
     const html = await this.crawlPage(url);
-    const iconReg1 = /<link rel="icon" href="(.*?)"/i;
-    const iconReg2 = /<link rel="shortcut icon" href="(.*?)"/i;
-    let icon = html.match(iconReg1)?.[1] || html.match(iconReg2)?.[1];
+    // 使用 cheerio.load() 方法加载 HTML 字符串
+    const $ = cheerio.load(html);
+    // 使用类似 jQuery 的选择器语法找到 link 元素
+    const iconLinkElement = $('link[rel="icon"]').first();
+    let icon = iconLinkElement.attr('href') || '🌍';
     icon = icon && processUrl(icon) ? icon : `${url}${icon}`;
-    return icon || '🌍';
+    return icon;
   }
 
   // 获取页面标题、描述、图标
   async getPageMeta(url) {
     const html = await this.crawlPage(url);
-    const titleReg = /<title>([\s\S]*?)<\/title>/i;
-    const descriptionReg = /<meta.*?name="description" content="(.*?)"/i;
-    const iconReg1 = /<link rel="icon" href="(.*?)"/i;
-    const iconReg2 = /<link rel="shortcut icon" href="(.*?)"/i;
-    let title = html.match(titleReg)?.[1]?.trim();
-    let description = html.match(descriptionReg)?.[1]?.trim();
-    let icon = html.match(iconReg1)?.[1] || html.match(iconReg2)?.[1];
+    // 使用 cheerio.load() 方法加载 HTML 字符串
+    const $ = cheerio.load(html);
+    // 使用类似 jQuery 的选择器语法找到 link 元素
+    const iconLinkElement = $('link[rel="icon"]').first();
+    const titleElement = $('title').first();
+    const descElement = $('meta[name="description"]').first();
+
+    let title = titleElement.text();
+    let description = descElement.attr('content');
+    let icon = iconLinkElement.attr('href') || '🌍';
     icon = icon && processUrl(icon) ? icon : `${url}${icon}`;
 
     return {
