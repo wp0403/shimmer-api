@@ -133,14 +133,6 @@ export class DouyinDto {
   mobileUrl: string;
 }
 
-export class KuaiShouDto {
-  title: string;
-  pic: string;
-  hot: number | string;
-  url: string;
-  mobileUrl: string;
-}
-
 export class TieBaDto {
   id: string | number;
   title: string;

@@ -4,7 +4,7 @@
  * @Author: WangPeng
  * @Date: 2023-07-23 23:25:55
  * @LastEditors: WangPeng
- * @LastEditTime: 2023-12-28 18:08:58
+ * @LastEditTime: 2023-12-28 18:11:33
  */
 import { Get, Controller } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
@@ -22,7 +22,6 @@ import {
   BilibiliDto,
   SspaiDto,
   DouyinDto,
-  KuaiShouDto,
   TieBaDto,
   IThomeDto,
 } from './news.dto';
