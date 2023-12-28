@@ -18,7 +18,6 @@
 | bilibili     | /news/bilibili   | 🟢      |
 | 少数派     | /news/sspai   | 🟢      |
 | 抖音     | /news/douyin   | 🟢      |
-| 快手     | /news/kuaishou   | 🟢      |
 | 贴吧     | /news/tieba   | 🟢      |
 | it之家     | /news/ithome   | 🟢      |
 

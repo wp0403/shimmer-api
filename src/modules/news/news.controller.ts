@@ -4,7 +4,7 @@
  * @Author: WangPeng
  * @Date: 2023-07-23 23:25:55
  * @LastEditors: WangPeng
- * @LastEditTime: 2023-07-24 15:48:38
+ * @LastEditTime: 2023-12-28 18:08:58
  */
 import { Get, Controller } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
@@ -138,15 +138,6 @@ export class NewsController {
   })
   async getDouyin(): Promise<DouyinDto[] | false> {
     return await this.newsService._getDouyin();
-  }
-
-  @Get('/kuaishou')
-  @ApiOperation({
-    summary: '获取快手热搜列表',
-    description: '获取快手热搜的列表',
-  })
-  async getKuaiShou(): Promise<KuaiShouDto[] | false> {
-    return await this.newsService._getKuaiShou();
   }
 
   @Get('/tieba')
